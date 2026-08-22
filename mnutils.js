@@ -6582,13 +6582,13 @@ class Response {
    */
   static new(res,data,err,url,headers){
     let init = {}
-    if (err.localizedDescription) {
+    if (err && !MNUtil.isNSNull(err) && err.localizedDescription) {
       init.error = err.localizedDescription
     }
     if (headers) {
       init.headers = headers
     }
-    if (MNUtil.isNSNull(res)) {
+    if (!res || MNUtil.isNSNull(res)) {
       //API似乎存在bug，有时候res是null，这时候status为0，但是不代表无响应
       if (init.error) {
         init.status = 0

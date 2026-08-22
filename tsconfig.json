@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "target": "ES2015",
+    "lib": ["ES2015"],
+    "module": "CommonJS",
+    "noEmit": true,
+    "skipLibCheck": false,
+    "strict": false
+  },
+  "files": [
+    "index.d.ts",
+    "tests/public-api.d.ts"
+  ]
+}

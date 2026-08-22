@@ -1,0 +1,13 @@
+{
+  "name": "addonlib",
+  "private": true,
+  "type": "commonjs",
+  "scripts": {
+    "check:types": "tsc -p tsconfig.json",
+    "check:syntax": "node --check runtime.js && node --check mnutils.js && node --check mnnote.js && node --check addon.js",
+    "test": "node --test"
+  },
+  "devDependencies": {
+    "typescript": "5.9.3"
+  }
+}
