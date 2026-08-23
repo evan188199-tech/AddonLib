@@ -55,6 +55,32 @@ MarginNote对象封装入口。
 let note = MNNote.new("note-id")
 ```
 
+## Fork Experience Notes
+
+### MarginNote 4 JSB helper dispatch
+
+Verified on MarginNote 4: AddonLib's `MNUtil.userInput` can present the native
+text-input dialog from a mounted study window. The wrapper itself is not the
+failure point when a host add-on toolbar action opens no UI.
+
+The observed host-side failure pattern is declaring ordinary JavaScript helper
+methods inside the object passed to `JSB.defineClass` and then calling them as
+`this.helper()` or `self.helper()` from lifecycle callbacks or Objective-C
+selectors. On this runtime, lifecycle callbacks and registered selectors are
+reachable, but those ordinary helpers are not necessarily exposed as instance
+methods. A failing call may therefore terminate before AddonLib displays its
+input dialog.
+
+Host add-ons should use either of these patterns:
+
+- Keep plain helper workflows as top-level functions and pass the add-on
+  instance explicitly, for example `openPairingIfNeeded(addon)`.
+- Or assign helpers to the returned class prototype after `JSB.defineClass`
+  returns, following the established MarginNote add-on pattern.
+
+This is integration guidance for host add-ons. No AddonLib API change or
+upstream issue/PR is required.
+
 ## License Statement
 
 本项目相关代码已获得授权，并以MIT License发布。
