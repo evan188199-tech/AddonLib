@@ -1,26 +1,26 @@
 # MNRuntimeLib
 ![Stable](https://img.shields.io/badge/Status-Stable-0d47a1?style=flat&labelColor=2E72E7)
 
-一个面向MarginNote插件开发的基础库仓库，提供MarginNote对象封装、运行时接入能力以及一组可复用的通用工具。
+A base library repository for MarginNote plugin development, providing MarginNote object wrappers, runtime integration capabilities, and a set of reusable utility functions.
 
-本项目是在Feliks的MNUtils代码基础上做裁剪、拆分和重组后形成的纯基础层版本，定位为MarginNote插件开发的基础lib。
+This project is a pure base-layer version tailored, split, and reorganized based on Feliks's MNUtils code, positioned as the foundational library for MarginNote plugin development.
 
 ## Features
 
-- MarginNote对象封装
-  包括笔记、评论、文档、笔记本等常见对象的统一访问能力。
-- Runtime基础设施
-  提供生命周期分发、广播路由注册、资源路径解析和基础WebView壳。
-- 通用工具函数
-  包含文件读写、URL处理、JSON修复、Markdown转换、压缩解压、图片与PDF转换等底层能力。
-- 可复用资源与页面
-  内置语言包、JSON Editor页面和所需静态资源，方便插件快速接入。
+- **MarginNote Object Wrappers**
+  Provides unified access to common objects such as notes, comments, documents, and notebooks.
+- **Runtime Infrastructure**
+  Provides lifecycle dispatch, broadcast route registration, resource path resolution, and a basic WebView shell.
+- **Common Utility Functions**
+  Contains low-level capabilities such as file read/write, URL handling, JSON repair, Markdown conversion, compression/decompression, and image/PDF conversion.
+- **Reusable Resources and Pages**
+  Built-in language packs, JSON Editor page, and required static assets, making it easy for plugins to integrate quickly.
 
 ## Core APIs
 
 ### Runtime
 
-运行时核心入口，主要用于注册生命周期和处理插件内路由。
+The core entry point of the runtime, primarily used to register lifecycles and handle inner routing in plugins.
 
 ```js
 Runtime.registerLifecycle({
@@ -38,7 +38,7 @@ Runtime.registerRoute("ping", () => {
 
 ### MNUtil
 
-通用工具入口，包含处理文件、资源、窗口、URL和WebView等诸多工具。
+Common utility entry point, containing various tools to handle files, assets, windows, URLs, and WebViews.
 
 ```js
 let path = Runtime.assets.resolve("assets/dot.png")
@@ -49,7 +49,7 @@ MNUtil.studyView.addSubview(webview)
 
 ### MNNote
 
-MarginNote对象封装入口。
+MarginNote object wrapper entry point.
 
 ```js
 let note = MNNote.new("note-id")
@@ -81,10 +81,18 @@ Host add-ons should use either of these patterns:
 This is integration guidance for host add-ons. No AddonLib API change or
 upstream issue/PR is required.
 
+### Verification Status
+
+The developers have verified the functionality up to this step:
+
+![Verification Step](assets/screenshot.png)
+
+*Note: The development team has only tested up to this step. We welcome the community to share and feedback subsequent test results.*
+
 ## License Statement
 
-本项目相关代码已获得授权，并以MIT License发布。
+The relevant code in this project has been authorized and is released under the MIT License.
 
-任何人可以在遵守MIT协议的前提下自由使用、修改、分发和复用本仓库中的代码。
+Anyone is free to use, modify, distribute, and reuse the code in this repository subject to compliance with the MIT License terms.
 
-具体许可条款请见[LICENSE](/Users/shenshichao/Downloads/mnutils_v0_2_2_alpha0228/LICENSE)。
+For specific license terms, please see [LICENSE](LICENSE).
